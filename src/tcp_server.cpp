@@ -1,8 +1,7 @@
 #include "tcp_server.hpp"
 
-static boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::tcp::v4(), 1234);
-
-tcp_server::tcp_server(boost::asio::io_service & io_service)
+tcp_server::tcp_server(boost::asio::io_service & io_service,
+		const boost::asio::ip::tcp::endpoint & endpoint)
 	: acceptor_(io_service, endpoint)
 {
 }

@@ -10,7 +10,8 @@
 class tcp_server
 {
 public:
-	tcp_server(boost::asio::io_service & io_service);
+	tcp_server(boost::asio::io_service & io_service,
+		const boost::asio::ip::tcp::endpoint & endpoint);
 	/**
 	 * Starts new asynchronous accept
 	 */
