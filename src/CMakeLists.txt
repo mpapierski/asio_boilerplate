@@ -4,6 +4,8 @@ find_package (Boost REQUIRED COMPONENTS
 include_directories (${Boost_INCLUDE_DIRS})
 
 add_executable (asio_boilerplate
-	main.cpp)
+	main.cpp
+	tcp_connection.cpp
+	tcp_server.cpp)
 target_link_libraries (asio_boilerplate
 	${Boost_LIBRARIES})
