@@ -1,5 +1,6 @@
 find_package (Boost REQUIRED COMPONENTS
-	system)
+	system
+	program_options)
 
 include_directories (${Boost_INCLUDE_DIRS})
 

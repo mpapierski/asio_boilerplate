@@ -1,17 +1,34 @@
 #include <iostream>
 #include <boost/asio.hpp>
+#include <boost/program_options.hpp>
 #include "tcp_server.hpp"
 
 int main(int argc, char * argv[])
 {
-	if (argc < 2)
+	namespace po = boost::program_options;
+	unsigned short port;
+	po::options_description desc("Allowed options");
+	desc.add_options()
+		("help", "show help message")
+		("version", "show version")
+		("port,p", po::value<unsigned short>(&port)->required(), "port")
+	;
+	po::variables_map vm;
+	po::store(po::parse_command_line(argc, argv, desc), vm);
+	if (vm.count("help"))
 	{
-		std::cerr << "Usage: " << argv[0] << " [port]" << std::endl;
-		return 1;
+		std::cout << desc << std::endl;
+		return 0;
 	}
+	if (vm.count("version"))
+	{
+		std::cout << argv[0] << " 1.0" << std::endl;
+		return 0;
+	}
+	po::notify(vm);
 	boost::asio::io_service io_service;
 	// Prepare server
-	boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::tcp::v4(), std::atoi(argv[1]));
+	boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::tcp::v4(), port);
 	tcp_server server(io_service, endpoint);
 	server.start_accept();
 	io_service.run();
