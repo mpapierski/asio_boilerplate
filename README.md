@@ -7,12 +7,13 @@ Boilerplate for another networked daemon service using `boost.asio`. Just write 
 
 - Build system
 - TCP server code
+- Integration tests
+- Echo protocol
 
 ## Todo
 
 - Implement echo protocol
 - Unit tests
-- Integration tests
 - Custom `boost.asio` service
 - Packaging daemon with CPack
 - Manpages
