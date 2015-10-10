@@ -25,7 +25,15 @@ int main(int argc, char * argv[])
 		std::cout << argv[0] << " 1.0" << std::endl;
 		return 0;
 	}
-	po::notify(vm);
+	try
+	{
+		po::notify(vm);
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << e.what() << std::endl;
+		return 1;
+	}
 	boost::asio::io_service io_service;
 	// Prepare server
 	boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::tcp::v4(), port);
