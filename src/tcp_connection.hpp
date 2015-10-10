@@ -1,6 +1,7 @@
 #if !defined(TCP_CONNECTION_HPP_INCLUDED_)
 #define TCP_CONNECTION_HPP_INCLUDED_
 
+#include <boost/array.hpp>
 #include <boost/bind.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/enable_shared_from_this.hpp>
@@ -31,7 +32,18 @@ public:
 	}
 private:
 	tcp_connection(boost::asio::io_service & io_service);
+	/**
+	 * Received data from client
+	 */
+	void handle_read(const boost::system::error_code & error,
+		std::size_t bytes_transferred);
+	/**
+	 * Data is delivered to client
+	 */
+	void handle_write(const boost::system::error_code & error);
 	boost::asio::ip::tcp::socket socket_;
+	enum { max_size = 1024 };
+	boost::array<char, max_size> data_;
 };
 
 #endif

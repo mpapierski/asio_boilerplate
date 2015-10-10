@@ -33,7 +33,10 @@ class TestCase(unittest.TestCase):
     def test_service_runs(self):
         # Here you usually want to check your service protocol.
         # Create a socket, send some request and expect a response.
-        pass
+        s = socket.create_connection(('127.0.0.1', self.port), timeout=30)
+        s.send('Hello world!')
+        response = s.recv(1024)
+        self.assertEqual(response, 'Hello world!')
 
 
 if __name__ == '__main__':

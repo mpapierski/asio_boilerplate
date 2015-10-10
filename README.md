@@ -12,7 +12,6 @@ Boilerplate for another networked daemon service using `boost.asio`. Just write 
 
 ## Todo
 
-- Implement echo protocol
 - Unit tests
 - Custom `boost.asio` service
 - Packaging daemon with CPack
