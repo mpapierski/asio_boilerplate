@@ -15,7 +15,15 @@ int main(int argc, char * argv[])
 		("port,p", po::value<unsigned short>(&port)->required(), "port")
 	;
 	po::variables_map vm;
-	po::store(po::parse_command_line(argc, argv, desc), vm);
+	try
+	{
+		po::store(po::parse_command_line(argc, argv, desc), vm);
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << e.what() << std::endl;
+		return 1;
+	}
 	if (vm.count("help"))
 	{
 		std::cout << desc << std::endl;
