@@ -44,9 +44,17 @@ int main(int argc, char * argv[])
 		return 1;
 	}
 	boost::asio::io_service io_service;
-	// Prepare server
-	boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::tcp::v4(), port);
-	tcp_server server(io_service, endpoint);
-	server.start_accept();
-	io_service.run();
+	try
+	{
+		// Prepare server
+		boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::tcp::v4(), port);
+		tcp_server server(io_service, endpoint);
+		server.start_accept();
+		io_service.run();
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << e.what() << std::endl;
+		return 1;
+	}
 }
