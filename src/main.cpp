@@ -2,6 +2,7 @@
 #include <boost/asio.hpp>
 #include <boost/program_options.hpp>
 #include "tcp_server.hpp"
+#include "config.h"
 
 int main(int argc, char * argv[])
 {
@@ -22,7 +23,7 @@ int main(int argc, char * argv[])
 	}
 	if (vm.count("version"))
 	{
-		std::cout << argv[0] << " 1.0" << std::endl;
+		std::cout << argv[0] << ' ' << VERSION_MAJOR << '.' << VERSION_MINOR << '.' << VERSION_PATCH << std::endl;
 		return 0;
 	}
 	try
