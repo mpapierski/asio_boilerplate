@@ -1,11 +1,15 @@
 cmake_minimum_required (VERSION 2.6)
-project (asio_boilerplate CXX)
+project (asio_boilerplate C CXX)
 
 set (VERSION_MAJOR 0)
 set (VERSION_MINOR 0)
 set (VERSION_PATCH 1)
 
 option (BUILD_TESTS "Build tests" OFF)
+
+# Check for all possible non portable functions
+include (CheckFunctionExists)
+check_function_exists (fork HAVE_FORK)
 
 configure_file (
 	config.h.in
