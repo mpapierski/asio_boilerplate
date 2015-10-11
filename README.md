@@ -9,6 +9,7 @@ Boilerplate for another networked daemon service using `boost.asio`. Just write 
 - TCP server code
 - Integration tests
 - Echo protocol
+- Double fork magic
 
 ## Todo
 
@@ -16,7 +17,6 @@ Boilerplate for another networked daemon service using `boost.asio`. Just write 
 - Custom `boost.asio` service
 - Packaging daemon with CPack
 - Manpages
-- Double fork magic
 - Win32 service support
 
 ... and so on.
