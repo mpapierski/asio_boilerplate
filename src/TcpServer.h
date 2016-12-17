@@ -1,16 +1,16 @@
-#if !defined(TCP_SERVER_HPP_INCLUDED_)
-#define TCP_SERVER_HPP_INCLUDED_
+#if !defined(TCP_SERVER_H_INCLUDED_)
+#define TCP_SERVER_H_INCLUDED_
 
 #include <boost/asio.hpp>
-#include "tcp_connection.hpp"
+#include "TcpConnection.h"
 
 /**
  * This is the TCP server code
  */
-class tcp_server {
+class TcpServer {
  public:
-  tcp_server(boost::asio::io_service& io_service,
-             const boost::asio::ip::tcp::endpoint& endpoint);
+  TcpServer(boost::asio::io_service& io_service,
+            const boost::asio::ip::tcp::endpoint& endpoint);
   /**
    * Starts new asynchronous accept
    */
@@ -19,7 +19,7 @@ class tcp_server {
    * New client is connected
    */
   void handle_accept(const boost::system::error_code& error,
-                     tcp_connection::pointer new_connection);
+                     TcpConnection::pointer new_connection);
 
  private:
   boost::asio::ip::tcp::acceptor acceptor_;

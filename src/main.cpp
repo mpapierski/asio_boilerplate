@@ -6,8 +6,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 #endif
+#include "TcpServer.h"
 #include "config.h"
-#include "tcp_server.hpp"
 
 int main(int argc, char* argv[]) {
   namespace po = boost::program_options;
@@ -94,7 +94,7 @@ int main(int argc, char* argv[]) {
   try {
     // Prepare server
     boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::tcp::v4(), port);
-    tcp_server server(io_service, endpoint);
+    TcpServer server(io_service, endpoint);
     server.start_accept();
     io_service.run();
   } catch (std::exception& e) {
