@@ -30,8 +30,7 @@ int main(int argc, char* argv[]) {
     return 0;
   }
   if (vm.count("version")) {
-    std::cout << argv[0] << ' ' << VERSION_MAJOR << '.' << VERSION_MINOR << '.'
-              << VERSION_PATCH << std::endl;
+    std::cout << argv[0] << ' ' << PROJECT_VERSION << std::endl;
     return 0;
   }
   try {
