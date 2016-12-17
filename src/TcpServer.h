@@ -14,15 +14,15 @@ class TcpServer {
   /**
    * Starts new asynchronous accept
    */
-  void start_accept();
-  /**
-   * New client is connected
-   */
-  void handle_accept(const boost::system::error_code& error,
-                     TcpConnection::pointer new_connection);
+  void start();
 
  private:
   boost::asio::ip::tcp::acceptor acceptor_;
+  /**
+   * New client is connected
+   */
+  void handleAccept(const boost::system::error_code& error,
+                    TcpConnection::pointer newConnection);
 };
 
 #endif

@@ -95,7 +95,7 @@ int main(int argc, char* argv[]) {
     // Prepare server
     boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::tcp::v4(), port);
     TcpServer server(io_service, endpoint);
-    server.start_accept();
+    server.start();
     io_service.run();
   } catch (std::exception& e) {
     std::cerr << e.what() << std::endl;

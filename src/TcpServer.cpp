@@ -4,21 +4,20 @@ TcpServer::TcpServer(boost::asio::io_service& io_service,
                      const boost::asio::ip::tcp::endpoint& endpoint)
     : acceptor_(io_service, endpoint) {}
 
-void TcpServer::start_accept() {
-  TcpConnection::pointer new_connection =
+void TcpServer::start() {
+  TcpConnection::pointer newConnection =
       TcpConnection::create(acceptor_.get_io_service());
 
   acceptor_.async_accept(
-      new_connection->socket(),
-      boost::bind(&TcpServer::handle_accept, this,
-                  boost::asio::placeholders::error, new_connection));
+      newConnection->socket(),
+      boost::bind(&TcpServer::handleAccept, this,
+                  boost::asio::placeholders::error, newConnection));
 }
 
-void TcpServer::handle_accept(const boost::system::error_code& error,
-                              TcpConnection::pointer new_connection) {
+void TcpServer::handleAccept(const boost::system::error_code& error,
+                             TcpConnection::pointer newConnection) {
   if (!error) {
-    new_connection->start();
+    newConnection->start();
   }
-
-  start_accept();
+  start();
 }
