@@ -11,7 +11,11 @@ add_executable (asio_boilerplate
     main.cpp
     TcpConnection.cpp
     TcpServer.cpp
+    Protocol.cpp
+    EchoProtocol.cpp
+    Client.cpp
     )
+
 target_link_libraries (asio_boilerplate
     ${Boost_LIBRARIES}
     )

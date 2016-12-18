@@ -6,11 +6,14 @@
 #include <boost/bind.hpp>
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/shared_ptr.hpp>
+#include "Client.h"
+#include "Protocol.h"
 
 /**
  * TCP connection class
  */
-class TcpConnection : public boost::enable_shared_from_this<TcpConnection> {
+class TcpConnection : public boost::enable_shared_from_this<TcpConnection>,
+                      private Client {
  public:
   typedef boost::shared_ptr<TcpConnection> pointer;
   inline static pointer create(boost::asio::io_service& io_service) {
@@ -20,6 +23,10 @@ class TcpConnection : public boost::enable_shared_from_this<TcpConnection> {
    * Starts reading on a socket
    */
   void start();
+  /**
+   * Sets new protocol implementation
+   */
+  void setProtocol(std::unique_ptr<Protocol> protocol);
   /**
    * Returns the socket used for this connection
    */
@@ -39,6 +46,7 @@ class TcpConnection : public boost::enable_shared_from_this<TcpConnection> {
   boost::asio::ip::tcp::socket socket_;
   enum { max_size = 1024 };
   boost::array<char, max_size> data_;
+  std::unique_ptr<Protocol> protocol;
 };
 
 #endif
